@@ -1,6 +1,6 @@
 Weekly Lab Materials for EDS 223
 
-<img width="405.5" height="407" alt="eds223" src="https://github.com/user-attachments/assets/1c3e7dae-f87c-43ae-a5f0-223dba36b56b" />
+<img width="203" height="204" alt="eds223" src="https://github.com/user-attachments/assets/1c3e7dae-f87c-43ae-a5f0-223dba36b56b" />
 
 
 ## Description 
