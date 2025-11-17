@@ -171,6 +171,8 @@ In this case, we are working with [Landsat Collection 2](https://www.usgs.gov/la
 - The valid range of pixel values for this collection goes from 7,273 to 43,636...
   - with a multiplicative scale factor of 0.0000275
   - with an additive scale factor of -0.2
+
+Find other scale factors and additive offsets for Landsat Level-2 science products [here](https://www.usgs.gov/faqs/how-do-i-use-a-scale-factor-landsat-level-2-science-products)!
   
 Let's reclassify any erroneous values as `NA` and update the values for each pixel based on the scaling factors. Now the pixel values should range from 0-100%!
 
