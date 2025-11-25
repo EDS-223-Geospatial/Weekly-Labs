@@ -89,7 +89,7 @@ dsm_post <- rast(here::here( "week9", "Eaton", "dsm_eaton_epsg32611_geoid12b_1m_
 ```
 
 ```{r}
-damage <- st_read(here::here("week9","06061784-f911-4d0e-aca5-0768ac66aac5.gdb")) %>% st_transform(crs = crs(dsm_post))
+damage <- st_read(here::here("week9","Eaton","06061784-f911-4d0e-aca5-0768ac66aac5.gdb")) %>% st_transform(crs = crs(dsm_post))
 ```
 
 
