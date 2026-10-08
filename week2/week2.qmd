@@ -160,7 +160,10 @@ Hopefully we're already thinking about how we could build checking coordinate re
 For example, we could add code like the following that transforms the CRS of `dataset2` to match `dataset1` and prints out a warning message.
 
 ```{r}
-
+if(st_crs(dataset1) != st_crs(dataset2)){
+  warning("coordinate refrence systems do not match")
+  dataset2 <- st_transform(dataset1, crs = st_crs(dataset1))
+}
 ```
 :::
 
@@ -313,6 +316,10 @@ And we can try the inner join again and hopefully the DRC now matches:
 ```{r}
 
 
+# update warning message conditional to include the mismatch for "others"
+if (nrow(world_coffee_inner) != nrow(coffee_data) & setdiff(coffee_data$name_long, world_coffee_inner$name_long) != "Others") {
+  warning("inner join does not match original data. potential data loss during join")
+}
 ```
 
 Let's visualize what a the inner join did to our spatial object.
