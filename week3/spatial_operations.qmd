@@ -192,10 +192,19 @@ In this example, we would like join the `capacity` attribute from the `cycle_hir
 ```
 
 ```{r}
-#| message: false
-#| code-fold: true
+
 
 ```
+
+
+
+
+```{r}
+
+
+```
+
+
 
 We can join by again using `st_join()`, but this time including a distance threshold using `st_is_within_distance`.
 
@@ -214,6 +223,16 @@ Note that the joined result has more rows than the target data. This is because 
 ```{r}
 
 ```
+
+
+Check again to see that there is now no overlap. Each id that originally had multiple bikes iwthin 20 km, now has a single average capacity. 
+
+```{r}
+
+```
+
+
+
 
 ### 4. Spatial aggregation
 
@@ -236,11 +255,11 @@ The syntax looks slightly different, in this case the argument `x` is the data w
 
 
 ```{r}
-#| message: false
+
 
 ```
 
-:::{.callout-note icon=true}
+
 # Joining incongruent layers
 
 An important consideration when aggregating spatial objects is that geometries are *congruent*, meaning aggregating zones align with the units being aggregating. This is often the case with administrative boundaries where units are sub-units of one another (e.g. countries > states > counties). 
@@ -254,11 +273,21 @@ However, in some cases the aggregating zones do not share common borders with th
 
 The simplest useful method for this is area weighted spatial interpolation, which transfers values from the `incongruent` object to a new column in `aggregating_zones` in proportion with the area of overlap: the larger the spatial intersection between input and output features, the larger the corresponding value. This is implemented in `st_interpolate_aw()`, as demonstrated in the code chunk below.
 
+Let us assume that the `value` column of `incongruent` refers to total regional income in million Euros. We want to transfer these values from the nine underlying polygons into the two `aggregating_zones` polygons proportionally by area overlap.
+
 ```{r}
 
 ```
 
-:::
+
+We can compare the original values with the interpolated result to see how values were redistributed across zones:
+
+
+```{r}
+
+```
+
+
 
 # Geometry operations
 
