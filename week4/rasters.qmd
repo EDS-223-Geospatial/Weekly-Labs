@@ -71,6 +71,16 @@ zion_land <- rast(system.file("raster/nlcd.tif", package = "spDataLarge"))
 ```
 
 ```{r}
+map1 <- tm_shape(zion_elevation) +
+  tm_raster(col.legend = tm_legend("Elevation (m)"))
+
+  
+
+map2 <- tm_shape(zion_land) +
+  tm_raster(col.legend = tm_legend("Land cover"))
+
+
+tmap_arrange(map1, map2, nrow = 1)
 
 ```
 
@@ -116,7 +126,23 @@ switzerland <- geodata::elevation_30s(country = "CHE", path = tempdir())
 
 
 ```{r}
+ 
+map1 <- tm_shape(austria) +
+  tm_raster(col.legend = tm_legend( "Elevation (m)")) +
+  tm_title(text = "Austria")
 
+  
+map2 <- tm_shape(switzerland) +
+  tm_raster(col.legend = tm_legend( "Elevation (m)")) +
+  tm_title(text = "Switzerland")
+
+
+map3 <- tm_shape(merged) +
+ tm_raster(col.legend = tm_legend( "Elevation (m)")) +
+  tm_title(text = "Merged") 
+
+  
+tmap_arrange(map1, map2, map3, nrow = 1)  
 ```
 
 
@@ -206,8 +232,17 @@ We can do this use the "[" operator and setting "drop = FALSE".
 ```
 
 ```{r}
+ map1 <- tm_shape(zion_elevation) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text = "original")
 
- 
+
+map2 <- tm_shape(zion_elevation_clip) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text = "clipped")
+
+
+tmap_arrange(map1, map2, nrow = 1)  
 ```
 
 :::{.callout-warning icon=true}
@@ -235,7 +270,19 @@ In the previous example, we subsetted the extent of the raster (removed cells). 
 ```
 
 ```{r}
+map1 <- tm_shape(zion_elevation) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text = "original")
 
+map2 <- tm_shape(masked1) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text = "bracket subsetting")
+
+map3 <- tm_shape(masked2) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text = "mask()")
+
+tmap_arrange(map1, map2, map3, nrow = 1) 
 
 ```
 
@@ -265,7 +312,17 @@ First, we need to construct a reclassification matrix:
 ```
 
 ```{r}
+map1 <- tm_shape(zion_elevation) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text = "original")
 
+
+map2 <- tm_shape(reclassified) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text= "reclassified")
+
+
+tmap_arrange(map1, map2, nrow = 1) 
 
 ```
 
@@ -309,7 +366,17 @@ We can use the `focal()` function to perform spatial filtering. We define the si
 ```
 
 ```{r}
+map1 <- tm_shape(zion_elevation) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text = "original")
 
+
+map2 <- tm_shape(elevation_focal) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text = "aggregated")
+
+
+tmap_arrange(map1, map2, nrow = 1) 
 
 ```
 
@@ -377,7 +444,16 @@ When decreasing the resolution of rasters, we are effectively combining multiple
 ```
 
 ```{r}
+map1 <- tm_shape(zion_elevation) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text = "original")
 
+
+map2 <- tm_shape(zion_elevation_coarse) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text = "aggregated")
+
+tmap_arrange(map1, map2, nrow = 1) 
 
 
 ```
@@ -414,7 +490,12 @@ No! There is no way for us to exactly recover the original data from the aggrega
 ```
 
 ```{r}
+map3 <- tm_shape(zion_elevation_disagg) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text = "disaggregated")
 
+
+tmap_arrange(map1, map2, map3, nrow = 1) 
 
 ```
 
@@ -437,7 +518,12 @@ In most cases, the target raster would be an object you are already working with
 ```
 
 ```{r}
+map4 <- tm_shape(zion_elevation_resample) +
+  tm_raster(col.legend = tm_legend(title = "Elevation (m)"))+
+  tm_title(text = "resampled")
 
+
+tmap_arrange(map1, map4, nrow = 1) 
 ```
 
 
